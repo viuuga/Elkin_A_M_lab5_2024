@@ -70,9 +70,9 @@ void output_polynomial(std::vector<RationalFraction>& pol)
 
 void output_pol_roots(std::vector<std::pair<RationalFraction, int>>& roots) {
 	std::cout << std::endl;
-	if (roots.size() == 0) std::cout << "Нет рациональных корней" << std::endl;
+	if (roots.size() == 0) std::cout << "There are no rational roots" << std::endl;
 	for (std::pair<RationalFraction, int>& root : roots) {
-		std::cout << "Корень: " << root.first << ", Алгебраическая степень: " << root.second << std::endl;
+		std::cout << "Root: " << root.first << ", Algebraic degree: " << root.second << std::endl;
 	}
 }
 
