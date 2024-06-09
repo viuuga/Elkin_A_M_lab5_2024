@@ -42,7 +42,7 @@ void output_int_mat(std::vector<std::vector<int>>& matrix)
 
 void output_polynomial(std::vector<RationalFraction>& pol)
 {
-	std::cout << "\nМногочлен:\n";
+	std::cout << "\nPolinomial:\n";
 	RationalFraction nul(0, 1);
 	int deg = pol.size();
 	for (int i = 1; i <= deg; ++i) {
