@@ -1,19 +1,19 @@
 /*
-Елькин Александр Михайлович ИВТ-11БО 2024
+Р•Р»СЊРєРёРЅ РђР»РµРєСЃР°РЅРґСЂ РњРёС…Р°Р№Р»РѕРІРёС‡ РР’Рў-11Р‘Рћ 2024
 
 
-Реализованно задание 1
+Р РµР°Р»РёР·РѕРІР°РЅРЅРѕ Р·Р°РґР°РЅРёРµ 1
 
 */
 
 
-//
+// РЅР°С…РѕР¶РґРґРµРЅРёРµ РѕРїСЂРµРґРµР»РёС‚РµР»СЏ Рё РґСЂСѓРіРѕРµ
 
 
 #include"NumPy.h" 
 
 
-// Определитель методом гауса
+// РћРїСЂРµРґРµР»РёС‚РµР»СЊ РјРµС‚РѕРґРѕРј РіР°СѓСЃР°
 bool gaus_determinant(std::vector<std::vector<RationalFraction>> matrix, RationalFraction& opr)
 {
 	RationalFraction mnojitel_for_opr(1, 1);
@@ -21,7 +21,7 @@ bool gaus_determinant(std::vector<std::vector<RationalFraction>> matrix, Rationa
 
 
 	for (int i = 0; i < n - 1; i++) {
-		if (matrix[i][i].getNumerator() == 0) { // Если = 0 то переставляем дальше
+		if (matrix[i][i].getNumerator() == 0) { // Р•СЃР»Рё = 0 С‚Рѕ РїРµСЂРµСЃС‚Р°РІР»СЏРµРј РґР°Р»СЊС€Рµ
 
 			for (int j = i + 1; j < n; j++) {
 				if (matrix[j][i].getNumerator() != 0) {
@@ -34,13 +34,13 @@ bool gaus_determinant(std::vector<std::vector<RationalFraction>> matrix, Rationa
 			}
 		}
 
-		if (matrix[i][i].getNumerator() != 0) {  //иначе домнажаем, вычитаем
+		if (matrix[i][i].getNumerator() != 0) {  //РёРЅР°С‡Рµ РґРѕРјРЅР°Р¶Р°РµРј, РІС‹С‡РёС‚Р°РµРј
 			for (int j = i + 1; j < n; j++) {
 				std::vector<RationalFraction> i_z(n);
 				RationalFraction mnojitel(1, 1);
-				i_z = matrix[i];   //отдельно сделал i-ю строку так как её вычитаем, она на определитель не влияет
+				i_z = matrix[i];   //РѕС‚РґРµР»СЊРЅРѕ СЃРґРµР»Р°Р» i-СЋ СЃС‚СЂРѕРєСѓ С‚Р°Рє РєР°Рє РµС‘ РІС‹С‡РёС‚Р°РµРј, РѕРЅР° РЅР° РѕРїСЂРµРґРµР»РёС‚РµР»СЊ РЅРµ РІР»РёСЏРµС‚
 				if (matrix[j][i].getNumerator() != 0) {
-					mnojitel = matrix[j][i] / matrix[i][i]; // ищем нужные множители
+					mnojitel = matrix[j][i] / matrix[i][i]; // РёС‰РµРј РЅСѓР¶РЅС‹Рµ РјРЅРѕР¶РёС‚РµР»Рё
 					
 					
 					for (int x = 0; x < n; x++) {
@@ -48,7 +48,7 @@ bool gaus_determinant(std::vector<std::vector<RationalFraction>> matrix, Rationa
 						matrix[j][x] -= i_z[x];
 						matrix[j][x].reduce();
 						if (matrix[j][x].getNumerator() >= 1e9 || matrix[j][x].getDenominator() >= 1e9)
-							return 1; // если хоть какаета часть числа начинает превышать 1е9 то завершаем метод гауса
+							return 1; // РµСЃР»Рё С…РѕС‚СЊ РєР°РєР°РµС‚Р° С‡Р°СЃС‚СЊ С‡РёСЃР»Р° РЅР°С‡РёРЅР°РµС‚ РїСЂРµРІС‹С€Р°С‚СЊ 1Рµ9 С‚Рѕ Р·Р°РІРµСЂС€Р°РµРј РјРµС‚РѕРґ РіР°СѓСЃР°
 					}
 				}
 			}
@@ -56,13 +56,13 @@ bool gaus_determinant(std::vector<std::vector<RationalFraction>> matrix, Rationa
 	}
 
 	for (int i = 0; i < n; i++) {
-		opr *= matrix[i][i];  // Считаем главную диагональ
+		opr *= matrix[i][i];  // РЎС‡РёС‚Р°РµРј РіР»Р°РІРЅСѓСЋ РґРёР°РіРѕРЅР°Р»СЊ
 	}
-	opr = opr / mnojitel_for_opr; // не забываем про вынесенные множители
+	opr = opr / mnojitel_for_opr; // РЅРµ Р·Р°Р±С‹РІР°РµРј РїСЂРѕ РІС‹РЅРµСЃРµРЅРЅС‹Рµ РјРЅРѕР¶РёС‚РµР»Рё
 	return 0;
 }
 
-// проверяет коллинеарность векторов (для фср)
+// РїСЂРѕРІРµСЂСЏРµС‚ РєРѕР»Р»РёРЅРµР°СЂРЅРѕСЃС‚СЊ РІРµРєС‚РѕСЂРѕРІ (РґР»СЏ С„СЃСЂ)
 bool eql_colinearity(std::vector<RationalFraction>& a, std::vector<RationalFraction>& b) {
 
 	RationalFraction coef(0, 0);
@@ -101,16 +101,16 @@ bool eql_colinearity(std::vector<RationalFraction>& a, std::vector<RationalFract
 
 
 
-// ищет строки-столбцы с наибольшим колличевством нулей
+// РёС‰РµС‚ СЃС‚СЂРѕРєРё-СЃС‚РѕР»Р±С†С‹ СЃ РЅР°РёР±РѕР»СЊС€РёРј РєРѕР»Р»РёС‡РµРІСЃС‚РІРѕРј РЅСѓР»РµР№
 std::pair<int, int> poisk_0(std::vector<std::vector<RationalFraction>>& m, int n)
 {
 	int i, j, max_nul_strok = 0, count, num_str = 0, max_nul_stolb = 0, num_stolb = 0;
-	std::pair<int, int> opr_line; //испульзую пейр так как 2-е значение - строка или столбец, 1-е - номер
+	std::pair<int, int> opr_line; //РёСЃРїСѓР»СЊР·СѓСЋ РїРµР№СЂ С‚Р°Рє РєР°Рє 2-Рµ Р·РЅР°С‡РµРЅРёРµ - СЃС‚СЂРѕРєР° РёР»Рё СЃС‚РѕР»Р±РµС†, 1-Рµ - РЅРѕРјРµСЂ
 	for (i = 0; i < n; i++) {
 		count = 0;
 		for (j = 0; j < n; j++) {
 			if (m[i][j].getNumerator() == 0) {
-				count++; // считаю нули
+				count++; // СЃС‡РёС‚Р°СЋ РЅСѓР»Рё
 			}
 		}
 		if (count > max_nul_strok) {
@@ -134,17 +134,17 @@ std::pair<int, int> poisk_0(std::vector<std::vector<RationalFraction>>& m, int n
 	if (max_nul_strok > max_nul_stolb) {
 		opr_line.first = num_str;
 		opr_line.second = 1;
-	}                                                 // присвоение значения где наиб кол-во нулей
+	}                                                 // РїСЂРёСЃРІРѕРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РіРґРµ РЅР°РёР± РєРѕР»-РІРѕ РЅСѓР»РµР№
 	else {
 		opr_line.first = num_stolb;
 		opr_line.second = 2;
 	}
 	return opr_line;
 }
-//функция для нахождения определителя методом лапласа (из лабориторной №2)
+//С„СѓРЅРєС†РёСЏ РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РѕРїСЂРµРґРµР»РёС‚РµР»СЏ РјРµС‚РѕРґРѕРј Р»Р°РїР»Р°СЃР° (РёР· Р»Р°Р±РѕСЂРёС‚РѕСЂРЅРѕР№ в„–2)
 RationalFraction laplas_determinant(std::vector<std::vector<RationalFraction>>& m, int n)
 {
-	if (n == 2) {    // условие выхода из рекурсии
+	if (n == 2) {    // СѓСЃР»РѕРІРёРµ РІС‹С…РѕРґР° РёР· СЂРµРєСѓСЂСЃРёРё
 		return m[0][0] * m[1][1] - m[0][1] * m[1][0];
 	}
 	int i, j, x, y;
@@ -153,11 +153,11 @@ RationalFraction laplas_determinant(std::vector<std::vector<RationalFraction>>& 
 	std::vector<std::vector<RationalFraction>> M(n - 1, std::vector<RationalFraction>(n - 1));
 	std::pair<int, int> key;
 	key = poisk_0(m, n);
-	if (key.second == 2) { // проверяем по чему раскладывать (строка или столбец)
+	if (key.second == 2) { // РїСЂРѕРІРµСЂСЏРµРј РїРѕ С‡РµРјСѓ СЂР°СЃРєР»Р°РґС‹РІР°С‚СЊ (СЃС‚СЂРѕРєР° РёР»Рё СЃС‚РѕР»Р±РµС†)
 		sum = 0;
 		j = key.first;
 		for (i = 0; i < n; i++) {
-			//создаем доп минор
+			//СЃРѕР·РґР°РµРј РґРѕРї РјРёРЅРѕСЂ
 			for (x = 0; x < n; x++) {
 				for (y = 0; y < n; y++) {
 					if (x != i && y != j) {
@@ -173,9 +173,9 @@ RationalFraction laplas_determinant(std::vector<std::vector<RationalFraction>>& 
 				}
 			}
 
-			if (m[i][j].getNumerator() != 0) { // если ноль то смысла нет считать, тратить время.
-				elem = m[i][j] * laplas_determinant(M, n - 1); // вход в рекурсию, поиск определитля доп минора.
-				if ((i + j) % 2 == 0) {  //Проверка на знак
+			if (m[i][j].getNumerator() != 0) { // РµСЃР»Рё РЅРѕР»СЊ С‚Рѕ СЃРјС‹СЃР»Р° РЅРµС‚ СЃС‡РёС‚Р°С‚СЊ, С‚СЂР°С‚РёС‚СЊ РІСЂРµРјСЏ.
+				elem = m[i][j] * laplas_determinant(M, n - 1); // РІС…РѕРґ РІ СЂРµРєСѓСЂСЃРёСЋ, РїРѕРёСЃРє РѕРїСЂРµРґРµР»РёС‚Р»СЏ РґРѕРї РјРёРЅРѕСЂР°.
+				if ((i + j) % 2 == 0) {  //РџСЂРѕРІРµСЂРєР° РЅР° Р·РЅР°Рє
 					sum += elem;
 				}
 				else {
@@ -184,11 +184,11 @@ RationalFraction laplas_determinant(std::vector<std::vector<RationalFraction>>& 
 			}
 		}
 	}
-	else if (key.second == 1) { // проверяем по чему раскладывать (строка или столбец)
+	else if (key.second == 1) { // РїСЂРѕРІРµСЂСЏРµРј РїРѕ С‡РµРјСѓ СЂР°СЃРєР»Р°РґС‹РІР°С‚СЊ (СЃС‚СЂРѕРєР° РёР»Рё СЃС‚РѕР»Р±РµС†)
 		sum = 0;
 		i = key.first;
 		for (j = 0; j < n; j++) {
-			//создаем доп минор
+			//СЃРѕР·РґР°РµРј РґРѕРї РјРёРЅРѕСЂ
 			for (x = 0; x < n; x++) {
 				for (y = 0; y < n; y++) {
 					if (x != i && y != j) {
@@ -203,9 +203,9 @@ RationalFraction laplas_determinant(std::vector<std::vector<RationalFraction>>& 
 					}
 				}
 			}
-			if (m[i][j].getNumerator() != 0) { // если ноль то смысла нет считать, тратить время.
-				elem = m[i][j] * laplas_determinant(M, n - 1); // вход в рекурсию, поиск определитля доп минора.
-				if ((i + j) % 2 == 0) { //Проверка на знак
+			if (m[i][j].getNumerator() != 0) { // РµСЃР»Рё РЅРѕР»СЊ С‚Рѕ СЃРјС‹СЃР»Р° РЅРµС‚ СЃС‡РёС‚Р°С‚СЊ, С‚СЂР°С‚РёС‚СЊ РІСЂРµРјСЏ.
+				elem = m[i][j] * laplas_determinant(M, n - 1); // РІС…РѕРґ РІ СЂРµРєСѓСЂСЃРёСЋ, РїРѕРёСЃРє РѕРїСЂРµРґРµР»РёС‚Р»СЏ РґРѕРї РјРёРЅРѕСЂР°.
+				if ((i + j) % 2 == 0) { //РџСЂРѕРІРµСЂРєР° РЅР° Р·РЅР°Рє
 					sum += elem;
 				}
 				else {
@@ -222,7 +222,7 @@ RationalFraction determinant(std::vector<std::vector<RationalFraction>>& matrix)
 {
 	RationalFraction opr(1, 1);
 	
-	if (gaus_determinant(matrix, opr)) { // считаем методом гауса, если находит не точно то пересчитываем методом лапласа
+	if (gaus_determinant(matrix, opr)) { // СЃС‡РёС‚Р°РµРј РјРµС‚РѕРґРѕРј РіР°СѓСЃР°, РµСЃР»Рё РЅР°С…РѕРґРёС‚ РЅРµ С‚РѕС‡РЅРѕ С‚Рѕ РїРµСЂРµСЃС‡РёС‚С‹РІР°РµРј РјРµС‚РѕРґРѕРј Р»Р°РїР»Р°СЃР°
 		opr = laplas_determinant(matrix, matrix.size());
 	}
 
