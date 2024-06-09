@@ -1,12 +1,12 @@
 /*
-Елькин Александр Михайлович ИВТ-11БО 2024
+Р•Р»СЊРєРёРЅ РђР»РµРєСЃР°РЅРґСЂ РњРёС…Р°Р№Р»РѕРІРёС‡ РР’Рў-11Р‘Рћ 2024
 
 
-Реализованно задание 1
+Р РµР°Р»РёР·РѕРІР°РЅРЅРѕ Р·Р°РґР°РЅРёРµ 1
 
 */
 
-//функции ввода ввывода
+//С„СѓРЅРєС†РёРё РІРІРѕРґР° РІРІС‹РІРѕРґР°
 
 
 #include"InOutPut.h"
@@ -42,7 +42,7 @@ void output_int_mat(std::vector<std::vector<int>>& matrix)
 
 void output_polynomial(std::vector<RationalFraction>& pol)
 {
-	std::cout << "\nМногочлен:\n";
+	std::cout << "\nРњРЅРѕРіРѕС‡Р»РµРЅ:\n";
 	RationalFraction nul(0, 1);
 	int deg = pol.size();
 	for (int i = 1; i <= deg; ++i) {
@@ -70,9 +70,9 @@ void output_polynomial(std::vector<RationalFraction>& pol)
 
 void output_pol_roots(std::vector<std::pair<RationalFraction, int>>& roots) {
 	std::cout << std::endl;
-	if (roots.size() == 0) std::cout << "Нет рациональных корней" << std::endl;
+	if (roots.size() == 0) std::cout << "РќРµС‚ СЂР°С†РёРѕРЅР°Р»СЊРЅС‹С… РєРѕСЂРЅРµР№" << std::endl;
 	for (std::pair<RationalFraction, int>& root : roots) {
-		std::cout << "Корень: " << root.first << ", Алгебраическая степень: " << root.second << std::endl;
+		std::cout << "РљРѕСЂРµРЅСЊ: " << root.first << ", РђР»РіРµР±СЂР°РёС‡РµСЃРєР°СЏ СЃС‚РµРїРµРЅСЊ: " << root.second << std::endl;
 	}
 }
 
@@ -124,13 +124,13 @@ int input_rat_mat(std::vector<std::vector<RationalFraction>>& matrix, std::strin
 	std::ifstream file;
 	file.open(fname);
 	if (!file) {
-		std::cout << "Ошибка чтения файла" << std::endl;
+		std::cout << "РћС€РёР±РєР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р°" << std::endl;
 		return -1;
 	}
 
 	std::cin >> fir >> sec >> msize;
 	if (std::cin.fail()) {
-		std::cout << "Ошибка чтения матрицы" << std::endl;
+		std::cout << "РћС€РёР±РєР° С‡С‚РµРЅРёСЏ РјР°С‚СЂРёС†С‹" << std::endl;
 		return -1;
 	}
 
