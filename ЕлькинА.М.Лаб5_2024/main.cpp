@@ -1,14 +1,14 @@
 /*
-Елькин Александр Михайлович ИВТ-11БО 2024
+Р•Р»СЊРєРёРЅ РђР»РµРєСЃР°РЅРґСЂ РњРёС…Р°Р№Р»РѕРІРёС‡ РР’Рў-11Р‘Рћ 2024
 
 
-Реализованно задание 1
+Р РµР°Р»РёР·РѕРІР°РЅРЅРѕ Р·Р°РґР°РЅРёРµ 1
 
 */
 
 
 
-// основной фаил
+// РѕСЃРЅРѕРІРЅРѕР№ С„Р°РёР»
 
 #include "polynomial.h"
 
@@ -21,7 +21,7 @@ int input_mat(char name[256]) {
 	std::vector<RationalFraction> polinomial;
 	std::vector<std::vector<RationalFraction>> matrix;
 
-	prov = input_rat_mat_file(matrix, name); // вводим матрицу
+	prov = input_rat_mat_file(matrix, name); // РІРІРѕРґРёРј РјР°С‚СЂРёС†Сѓ
 
 	if (prov < 0) {
 		return prov;
@@ -30,9 +30,9 @@ int input_mat(char name[256]) {
 	std::cout << " n = " << matrix.size() << std::endl;
 	output_rat_mat(matrix);
 
-	polinomial = pol_from_mat(matrix); // находим характерестический многочлен (polinomial.cpp)
+	polinomial = pol_from_mat(matrix); // РЅР°С…РѕРґРёРј С…Р°СЂР°РєС‚РµСЂРµСЃС‚РёС‡РµСЃРєРёР№ РјРЅРѕРіРѕС‡Р»РµРЅ (polinomial.cpp)
 	output_polynomial(polinomial);
-	roots = polynomial_roots(polinomial); // находим его корни (polinomial.cpp)
+	roots = polynomial_roots(polinomial); // РЅР°С…РѕРґРёРј РµРіРѕ РєРѕСЂРЅРё (polinomial.cpp)
 	output_pol_roots(roots);
 	
 
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 	setlocale(LC_ALL, "Russian");
 
 	if (argc == 1) {
-		std::cout << "Введите имя файла: ";
+		std::cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ С„Р°Р№Р»Р°: ";
 		char name[256];
 		std::cin >> name;
 		input_mat(name);
@@ -52,12 +52,12 @@ int main(int argc, char* argv[]) {
 		int prov;
 		prov = input_mat(argv[1]);
 		if (prov == -1)
-			std::cout << "Ошибка ввода.";
+			std::cout << "РћС€РёР±РєР° РІРІРѕРґР°.";
 		if (prov == -2) {
-			std::cout << "Ошибка чтения файла";
+			std::cout << "РћС€РёР±РєР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р°";
 		}
 	}
 	else {
-		std::cout << "Ошибка ввода аргументов";
+		std::cout << "РћС€РёР±РєР° РІРІРѕРґР° Р°СЂРіСѓРјРµРЅС‚РѕРІ";
 	}
 }
