@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 	setlocale(LC_ALL, "Russian");
 
 	if (argc == 1) {
-		std::cout << "Введите имя файла: ";
+		std::cout << "Enter the file name: ";
 		char name[256];
 		std::cin >> name;
 		input_mat(name);
@@ -52,12 +52,12 @@ int main(int argc, char* argv[]) {
 		int prov;
 		prov = input_mat(argv[1]);
 		if (prov == -1)
-			std::cout << "Ошибка ввода.";
+			std::cout << "Input error.";
 		if (prov == -2) {
-			std::cout << "Ошибка чтения файла";
+			std::cout << "File reading error";
 		}
 	}
 	else {
-		std::cout << "Ошибка ввода аргументов";
+		std::cout << "Error entering arguments";
 	}
 }
