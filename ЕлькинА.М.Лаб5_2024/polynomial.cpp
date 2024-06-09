@@ -1,19 +1,19 @@
 /*
-Елькин Александр Михайлович ИВТ-11БО 2024
+Р•Р»СЊРєРёРЅ РђР»РµРєСЃР°РЅРґСЂ РњРёС…Р°Р№Р»РѕРІРёС‡ РР’Рў-11Р‘Рћ 2024
 
 
-Реализованно задание 1
+Р РµР°Р»РёР·РѕРІР°РЅРЅРѕ Р·Р°РґР°РЅРёРµ 1
 
 */
 
 
-// фаил для функций связанных с многочленом
+// С„Р°РёР» РґР»СЏ С„СѓРЅРєС†РёР№ СЃРІСЏР·Р°РЅРЅС‹С… СЃ РјРЅРѕРіРѕС‡Р»РµРЅРѕРј
 
 #include "polynomial.h"
 
 
 
-//для подсчёта суммы главных миноров нахлдим определитель со столбцами и строками соответствующими переданной перестановкой
+//РґР»СЏ РїРѕРґСЃС‡С‘С‚Р° СЃСѓРјРјС‹ РіР»Р°РІРЅС‹С… РјРёРЅРѕСЂРѕРІ РЅР°С…Р»РґРёРј РѕРїСЂРµРґРµР»РёС‚РµР»СЊ СЃРѕ СЃС‚РѕР»Р±С†Р°РјРё Рё СЃС‚СЂРѕРєР°РјРё СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРјРё РїРµСЂРµРґР°РЅРЅРѕР№ РїРµСЂРµСЃС‚Р°РЅРѕРІРєРѕР№
 RationalFraction vich_mn(std::vector<std::vector<RationalFraction>>& matrix, std::vector<int>& perestan) {
 
     int n = perestan.size();
@@ -21,14 +21,14 @@ RationalFraction vich_mn(std::vector<std::vector<RationalFraction>>& matrix, std
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            buff_matrix[i][j] = matrix[perestan[i] - 1][perestan[j] - 1];// создаём матрицу с нужными элемениами
+            buff_matrix[i][j] = matrix[perestan[i] - 1][perestan[j] - 1];// СЃРѕР·РґР°С‘Рј РјР°С‚СЂРёС†Сѓ СЃ РЅСѓР¶РЅС‹РјРё СЌР»РµРјРµРЅРёР°РјРё
         }
     }
-    return determinant(buff_matrix); //возвращаем её определитель
+    return determinant(buff_matrix); //РІРѕР·РІСЂР°С‰Р°РµРј РµС‘ РѕРїСЂРµРґРµР»РёС‚РµР»СЊ
 }
 
 
-// номера для главных миноров находим при помощи перестановок сочетаний
+// РЅРѕРјРµСЂР° РґР»СЏ РіР»Р°РІРЅС‹С… РјРёРЅРѕСЂРѕРІ РЅР°С…РѕРґРёРј РїСЂРё РїРѕРјРѕС‰Рё РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє СЃРѕС‡РµС‚Р°РЅРёР№
 void perestan_sochit(std::vector<std::vector<RationalFraction>>& matrix, int M, int N, RationalFraction &mnoj) {
     std::vector<int> numbers(M);
     for (int i = 0; i < N; ++i) {
@@ -56,7 +56,7 @@ void perestan_sochit(std::vector<std::vector<RationalFraction>>& matrix, int M, 
 }
 
 
-// обновляет вектор корней
+// РѕР±РЅРѕРІР»СЏРµС‚ РІРµРєС‚РѕСЂ РєРѕСЂРЅРµР№
 void update_roots(std::vector<std::pair<RationalFraction, int>>& roots, RationalFraction root) {
     bool in = false;
     int num;
@@ -76,7 +76,7 @@ void update_roots(std::vector<std::pair<RationalFraction, int>>& roots, Rational
 
 
 
-// проверяем является ли число корнем многочлена
+// РїСЂРѕРІРµСЂСЏРµРј СЏРІР»СЏРµС‚СЃСЏ Р»Рё С‡РёСЃР»Рѕ РєРѕСЂРЅРµРј РјРЅРѕРіРѕС‡Р»РµРЅР°
 bool vichis_rats_roots(RationalFraction root, std::vector<RationalFraction>& polynom) {
     RationalFraction sum(0, 1);
     int deg = polynom.size();
@@ -90,7 +90,7 @@ bool vichis_rats_roots(RationalFraction root, std::vector<RationalFraction>& pol
 }
 
 
-// деление многочлена
+// РґРµР»РµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅР°
 std::vector<RationalFraction> delenie_pol(std::vector<RationalFraction> delimoe, std::vector<RationalFraction> delitel) {
     std::vector<RationalFraction> chastnoe;
 
@@ -108,7 +108,7 @@ std::vector<RationalFraction> delenie_pol(std::vector<RationalFraction> delimoe,
 }
 
 
-//Если многочлен имеет рациональные множители, то избавляемся от них
+//Р•СЃР»Рё РјРЅРѕРіРѕС‡Р»РµРЅ РёРјРµРµС‚ СЂР°С†РёРѕРЅР°Р»СЊРЅС‹Рµ РјРЅРѕР¶РёС‚РµР»Рё, С‚Рѕ РёР·Р±Р°РІР»СЏРµРјСЃСЏ РѕС‚ РЅРёС…
 long long NOK(std::vector<long long> m) {
     long long max_el = -1e18, buff, count_break = 0;
     for (long long i : m) {
@@ -133,7 +133,7 @@ long long NOK(std::vector<long long> m) {
     return max_el;
 }
 
-// обираем повторения
+// РѕР±РёСЂР°РµРј РїРѕРІС‚РѕСЂРµРЅРёСЏ
 void overlap(std::vector<RationalFraction> &vec) {
 
     for (int i = 0; i < vec.size()-1; ++i) {
@@ -150,7 +150,7 @@ void overlap(std::vector<RationalFraction> &vec) {
 
 
 
-// находим характеристический многочлен
+// РЅР°С…РѕРґРёРј С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёС‡РµСЃРєРёР№ РјРЅРѕРіРѕС‡Р»РµРЅ
 std::vector<RationalFraction> pol_from_mat(std::vector<std::vector<RationalFraction>>& matrix)
 {
     int N = matrix.size();
@@ -163,10 +163,10 @@ std::vector<RationalFraction> pol_from_mat(std::vector<std::vector<RationalFract
     }
     else polinomial[0] = -rf;
 
-    for (int det_size = 1; det_size <= N; ++det_size) {// ноходим множители
+    for (int det_size = 1; det_size <= N; ++det_size) {// РЅРѕС…РѕРґРёРј РјРЅРѕР¶РёС‚РµР»Рё
         RationalFraction mnoj(0, 1);
 
-        perestan_sochit(matrix, N, det_size, mnoj);// перебираем все главные миноры заданного размера
+        perestan_sochit(matrix, N, det_size, mnoj);// РїРµСЂРµР±РёСЂР°РµРј РІСЃРµ РіР»Р°РІРЅС‹Рµ РјРёРЅРѕСЂС‹ Р·Р°РґР°РЅРЅРѕРіРѕ СЂР°Р·РјРµСЂР°
         
         if ((N - det_size) % 2 != 0) mnoj *= -1;
 
@@ -182,7 +182,7 @@ std::vector<RationalFraction> pol_from_mat(std::vector<std::vector<RationalFract
 
 
 
-// находим корни многочлена
+// РЅР°С…РѕРґРёРј РєРѕСЂРЅРё РјРЅРѕРіРѕС‡Р»РµРЅР°
 std::vector<std::pair<RationalFraction, int>> polynomial_roots(std::vector<RationalFraction> polynommial)
 {
     int max_roots = polynommial.size() - 1, kol_root = 0;
@@ -193,7 +193,7 @@ std::vector<std::pair<RationalFraction, int>> polynomial_roots(std::vector<Ratio
     for (RationalFraction el : polynommial)
         if (el.getDenominator() != 1) znam.push_back(el.getDenominator());
 
-    if (znam.size() > 0) { // убираем дроби
+    if (znam.size() > 0) { // СѓР±РёСЂР°РµРј РґСЂРѕР±Рё
         long long nok = NOK(znam);
 
         if (nok == -1e18) return {};
@@ -206,7 +206,7 @@ std::vector<std::pair<RationalFraction, int>> polynomial_roots(std::vector<Ratio
     while (flag)
     {
         flag = false;
-        while (polynommial.size() > 0 && polynommial[polynommial.size()-1].getNumerator() == 0) { // проверяем корни равные 0
+        while (polynommial.size() > 0 && polynommial[polynommial.size()-1].getNumerator() == 0) { // РїСЂРѕРІРµСЂСЏРµРј РєРѕСЂРЅРё СЂР°РІРЅС‹Рµ 0
             update_roots(roots, RationalFraction(0, 1));
             polynommial.pop_back();
             kol_root++;
@@ -216,7 +216,7 @@ std::vector<std::pair<RationalFraction, int>> polynomial_roots(std::vector<Ratio
         std::vector<int> vse_p, vse_q;
 
 
-        // 219 - 238 находи все делители свободных членов
+        // 219 - 238 РЅР°С…РѕРґРё РІСЃРµ РґРµР»РёС‚РµР»Рё СЃРІРѕР±РѕРґРЅС‹С… С‡Р»РµРЅРѕРІ
         cv_chlen.reduce(); naib_chlen.reduce();
         if (cv_chlen.getDenominator() != 1 || naib_chlen.getDenominator() != 1) break;
 
@@ -238,7 +238,7 @@ std::vector<std::pair<RationalFraction, int>> polynomial_roots(std::vector<Ratio
  
 
 
-        // ищем корни
+        // РёС‰РµРј РєРѕСЂРЅРё
         for (int p : vse_p) {
             for (int q : vse_q) {
                 RationalFraction rt(p, q);
